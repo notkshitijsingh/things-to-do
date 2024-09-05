@@ -44,7 +44,10 @@ button:hover {
     background-color: #0056b3;
 }
 
-#add {
-    width: 50px;
-    height: 20px;
+#add-img {
+    width: 25px;
+}
+
+#add-img:hover {
+    cursor: pointer;
 }

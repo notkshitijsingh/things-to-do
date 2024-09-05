@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles/list.css"/>
-    <link rel="icon" href="assets/favicon.png"/>
+    <link rel="stylesheet" href="../styles/list.css"/>
+    <link rel="icon" href="../assets/favicon.png"/>
 </head>
 <body>
     <div class="list">
-        <h2 id="todo-header">... To-Do List</h2>
+        <h2 id="todo-header">
+            <span id="username-placeholder">USERNAME</span>'s To-Do List
+        </h2>
         <div class="add-task">
             <label for="task1" type></label>
-            <input type="checkbox"/><input type="text" id="new-task" placeholder="Enter new task..."/>
-            <button id="add-button"><img id="add-img" src="assets/favicon.png"/></button>
+            <input type="checkbox"/>
+            <input type="text" id="new-task" placeholder="..."/>
+            <img id="add-img" src="../assets/favicon.png"/>
         </div>
     </div>
 </body>
