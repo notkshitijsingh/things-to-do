@@ -1,4 +1,4 @@
-body{
+body {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: row;
@@ -22,32 +22,29 @@ h2 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#new-task{
+#new-task {
     margin: 5px;
-    width: 75%;
+    width: 78%;
     height: 20px;
 }
 
-button {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 4px;
-    margin-left: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
 #add-img {
+    padding-left: 10px;
+    margin-bottom: -8px;
     width: 25px;
 }
 
 #add-img:hover {
     cursor: pointer;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.task-item img {
+    width: 25px;
+    height: 25px;
 }
