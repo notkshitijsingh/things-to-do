@@ -18,23 +18,27 @@ h2 {
     margin: 50px auto;
     padding: 20px;
     background: #fff;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#new-task {
+.new-task {
     margin: 5px;
     width: 78%;
-    height: 20px;
+    height: 30px;
+    margin-bottom: 15px;
+    border-top: 0;
+    border-left:0;
+    border-right: 0;
 }
 
+.new-task:active{
+    border: bottom 2px  solid;
+}
 #add-img {
     padding-left: 10px;
     margin-bottom: -8px;
     width: 25px;
-}
-
-#add-img:hover {
     cursor: pointer;
 }
 
@@ -44,7 +48,21 @@ h2 {
     margin-bottom: 10px;
 }
 
+.task-item input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.task-item .new-task { 
+    margin: 5px;
+    width: 78%;
+    height: 30px;
+}
+
 .task-item img {
     width: 25px;
     height: 25px;
+}
+
+.strike-through {
+    text-decoration: line-through;
 }

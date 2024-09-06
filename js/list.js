@@ -2,28 +2,25 @@ let listnum = 1;
 
 function add() {
     listnum++;
-    const tasks = document.getElementById('tasks');
-    const newTasks = document.createElement('div');
-    newTasks.className = 'task-item';
+    
+    const tasks = document.getElementsByClassName('tasks')[0];
+
+    const newTaskItem = document.createElement('div');
+    newTaskItem.className = 'task-item'; 
 
     const newCheckbox = document.createElement('input');
     newCheckbox.type = 'checkbox';
 
-    const t1 = document.getElementById("new-task");
-    const newTask = t1.cloneNode(true);
-    newTask.id = `task-${listnum}`; 
-    newTask.value = ""; 
-    const newImg = document.createElement('img');
-    newImg.src = '../assets/favicon.png';
-    newImg.alt = 'Task Image'; 
-    newImg.style.cursor = 'pointer'; 
+    const taskInput = document.getElementsByClassName('new-task')[0];
+    const newTaskInput = taskInput.cloneNode(true);
+    newTaskInput.value = ""; 
+    newTaskInput.id = `task-${listnum}`;
 
-    newTasks.appendChild(newCheckbox);
-    newTasks.appendChild(newTask);
-    newTasks.appendChild(newImg);
+    newTaskItem.appendChild(newCheckbox);
+    newTaskItem.appendChild(newTaskInput);
 
     if (tasks) {
-        tasks.appendChild(newTasks);
+        tasks.appendChild(newTaskItem);
     }
 }
 
