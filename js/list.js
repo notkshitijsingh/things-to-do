@@ -22,6 +22,33 @@ function add() {
     if (tasks) {
         tasks.appendChild(newTaskItem);
     }
+
+    newCheckbox.addEventListener('click', function() {
+        if (newCheckbox.checked) {
+            newTaskInput.classList.add('strike-through');
+        } else {
+            newTaskInput.classList.remove('strike-through');
+        }
+    });
 }
 
+function sub() {
+    if (listnum > 1) {
+        const lastTask = document.getElementById(`task-${listnum}`).parentElement;
+            lastTask.remove();
+            listnum--;
+        }
+    }
 document.getElementById('add-img').addEventListener('click', add);
+
+document.addEventListener('keydown', event => {
+    const key = event.key;
+
+    if (key === 'Enter') { 
+        add();
+    } 
+    
+    else if (key === 'Backspace') {
+        sub();
+    }
+});
