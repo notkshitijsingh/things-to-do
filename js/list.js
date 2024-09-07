@@ -56,6 +56,20 @@ function sub() {
     }
 }
 
+function save() {
+    const todo = [];
+    for (let i = 1; i <= listnum; i++) {
+        const taskInput = document.getElementById(`task-${i}`);
+        const checkbox = document.getElementById(`check-${i}`);
+        if (taskInput && checkbox) {
+            todo.push({ 
+                taskText: taskInput.value, 
+                checked: checkbox.checked 
+            });
+        }
+    }
+}
+
 document.getElementById('add-img').addEventListener('click', add);
 
 document.addEventListener('keydown', event => {
