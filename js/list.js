@@ -1,5 +1,4 @@
 let listnum = 1;
-
 function add() {
     listnum++;
     
@@ -10,25 +9,19 @@ function add() {
     newGap.style.display = 'block';
 
     const newTaskItem = document.createElement('div');
-    newTaskItem.className = 'task-item'; 
+    newTaskItem.className = 'task-item';
 
-    const newCheckbox = document.createElement('input');
-    newCheckbox.type = 'checkbox';
+    const originalTask = document.getElementById('task-1');
+    const originalCheckbox = document.getElementById('check-1');
 
-    const taskInput = document.getElementsByClassName('new-task')[0];
-    const newTaskInput = taskInput.cloneNode(true);
-    newTaskInput.value = ""; 
+    const newCheckbox = originalCheckbox.cloneNode(true);
+    newCheckbox.id = `check-${listnum}`;
+    newCheckbox.checked = false;
+
+    const newTaskInput = originalTask.cloneNode(true);
     newTaskInput.id = `task-${listnum}`;
-
-    newTaskItem.appendChild(newCheckbox);
-    newTaskItem.appendChild(newTaskInput);
-
-    if (tasks) {
-
-        tasks.appendChild(newGap);
-
-        tasks.appendChild(newTaskItem);
-    }
+    newTaskInput.value = "";
+    newTaskInput.classList.remove('strike-through');
 
     newCheckbox.addEventListener('click', function() {
         if (newCheckbox.checked) {
@@ -37,13 +30,21 @@ function add() {
             newTaskInput.classList.remove('strike-through');
         }
     });
+
+    newTaskItem.appendChild(newCheckbox);
+    newTaskItem.appendChild(newTaskInput);
+
+    if (tasks) {
+        tasks.appendChild(newGap);
+        tasks.appendChild(newTaskItem);
+    }
+    newTaskInput.focus();
 }
 
 function sub() {
-    
-    const existingGap = document.getElementById('gap');
-    if (existingGap) {
-        existingGap.remove();
+    const gaps = document.querySelectorAll('#gap');
+    if (gaps.length > 0) {
+        gaps[gaps.length - 1].remove();
     }
 
     if (listnum > 1) {
@@ -62,9 +63,20 @@ document.addEventListener('keydown', event => {
 
     if (key === 'Enter') { 
         add();
-    } 
-    
-    else if (key === 'Backspace') {
+    } else if (key === '`') {
         sub();
     }
+});
+
+document.getElementById('check-1').addEventListener('click', function() {
+    const firstTaskInput = document.getElementById('task-1');
+    if (this.checked) {
+        firstTaskInput.classList.add('strike-through');
+    } else {
+        firstTaskInput.classList.remove('strike-through');
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('task-1').focus();
 });

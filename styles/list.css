@@ -52,10 +52,15 @@ h2 {
     margin-right: 8px;
 }
 
-.task-item .new-task { 
+.task-item .new-task[type="text"] { 
     margin: 5px;
     width: 78%;
     height: 30px;
+}
+
+input[type="text"]:focus {
+    border: none;
+    outline: none;
 }
 
 .task-item img {
@@ -65,4 +70,5 @@ h2 {
 
 .strike-through {
     text-decoration: line-through;
+    color: #333;
 }
