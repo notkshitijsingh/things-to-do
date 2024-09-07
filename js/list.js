@@ -5,6 +5,10 @@ function add() {
     
     const tasks = document.getElementsByClassName('tasks')[0];
 
+    const newGap = document.createElement('div');
+    newGap.id = 'gap';
+    newGap.style.display = 'block';
+
     const newTaskItem = document.createElement('div');
     newTaskItem.className = 'task-item'; 
 
@@ -20,6 +24,9 @@ function add() {
     newTaskItem.appendChild(newTaskInput);
 
     if (tasks) {
+
+        tasks.appendChild(newGap);
+
         tasks.appendChild(newTaskItem);
     }
 
@@ -33,12 +40,21 @@ function add() {
 }
 
 function sub() {
+    
+    const existingGap = document.getElementById('gap');
+    if (existingGap) {
+        existingGap.remove();
+    }
+
     if (listnum > 1) {
-        const lastTask = document.getElementById(`task-${listnum}`).parentElement;
-            lastTask.remove();
+        const lastTask = document.getElementById(`task-${listnum}`);
+        if (lastTask) {
+            lastTask.parentElement.remove();
             listnum--;
         }
     }
+}
+
 document.getElementById('add-img').addEventListener('click', add);
 
 document.addEventListener('keydown', event => {

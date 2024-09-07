@@ -26,15 +26,15 @@ h2 {
     margin: 5px;
     width: 78%;
     height: 30px;
-    margin-bottom: 15px;
-    border-top: 0;
-    border-left:0;
-    border-right: 0;
+    border: none;
 }
 
-.new-task:active{
-    border: bottom 2px  solid;
+#gap {
+    border-top: 1px solid lightgrey; 
+    margin: 10px 0;
+    display: none;
 }
+
 #add-img {
     padding-left: 10px;
     margin-bottom: -8px;

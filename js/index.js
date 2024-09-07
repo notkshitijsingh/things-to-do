@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const showRegister = document.getElementById('show-register');
     const showLogin = document.getElementById('show-login');
     const loginButton = document.getElementById('login-button');
+    const registerButton = document.getElementById('register-button')
 
     if (logindiv && registerdiv && showRegister && showLogin) {
         showRegister.addEventListener('click', function(event) {
@@ -24,4 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = '../pages/list.html';
         });
     }
+    if (registerButton) {
+        registerButton.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            registerdiv.style.display = 'none';
+            logindiv.style.display = 'block';
+        });
+    }
 });
+
