@@ -53,22 +53,30 @@ function sub() {
             lastTask.parentElement.remove();
             listnum--;
         }
-    }
-}
-
-function save() {
-    const todo = [];
-    for (let i = 1; i <= listnum; i++) {
-        const taskInput = document.getElementById(`task-${i}`);
-        const checkbox = document.getElementById(`check-${i}`);
-        if (taskInput && checkbox) {
-            todo.push({ 
-                taskText: taskInput.value, 
-                checked: checkbox.checked 
-            });
+    } else if (listnum === 1) {
+        const firstTaskInput = document.getElementById('task-1');
+        const firstCheckbox = document.getElementById('check-1');
+        
+        if (firstTaskInput) {
+            firstTaskInput.value = ''; 
+            firstTaskInput.classList.remove('strike-through');
+        }
+        if (firstCheckbox) {
+            firstCheckbox.checked = false;
         }
     }
 }
+
+
+function save(event) {
+    event.preventDefault();
+    const data = new listData(event.target);
+    const value = Object.fromEntries(data.entries());
+    value.topics = data.getAll("list");
+    console.log({ value });
+}
+
+document.getElementById('save-btn').addEventListener('click', save);
 
 document.getElementById('add-img').addEventListener('click', add);
 

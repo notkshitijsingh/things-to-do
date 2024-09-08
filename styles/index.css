@@ -1,4 +1,4 @@
-body{
+body {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
@@ -7,6 +7,7 @@ body{
     width: 100vw;
     overflow: hidden;
 }
+
 #box1, #box2 {
     width: 600px;
     margin: 0 auto;
@@ -21,6 +22,7 @@ h2 {
     text-align: center;
     color: #000000;
 }
+
 button {
     width: 100%;
     padding: 7px;
@@ -32,16 +34,26 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-#user, #password, #username, #email, #confirmpassword{
+
+#user, #login-password, #username, #email, #register-password, #confirmpassword {
     margin: 5px;
     width: 95%;
     height: 20px;
 }
-.buttons{
+
+.buttons {
     width: 95%;
     margin: 10px;
 }
 
 button:hover {
     background-color: #0056b3;
+}
+
+/* Updated selectors for the password icons */
+#register-pass-img, #confirm-pass-img {
+    width: 20px;
+    margin-bottom: -5px;
+    margin-left: 5px;
+    cursor: pointer;
 }
