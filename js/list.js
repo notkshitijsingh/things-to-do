@@ -1,4 +1,5 @@
 let listnum = 1;
+
 function add() {
     listnum++;
     
@@ -67,13 +68,86 @@ function sub() {
     }
 }
 
-
 function save(event) {
     event.preventDefault();
-    const data = new listData(event.target);
-    const value = Object.fromEntries(data.entries());
-    value.topics = data.getAll("list");
-    console.log({ value });
+
+    const tasks = document.querySelectorAll('.new-task');
+    const taskArray = [];
+
+    tasks.forEach((task, index) => {
+        const checkbox = document.getElementById(`check-${index + 1}`);
+
+        if (task && checkbox) {
+            taskArray.push({
+                id: `task-${index + 1}`,          
+                task: task.value,                 
+                checked: checkbox.checked        
+            });
+        }
+    });
+
+    const jsonData = {
+        username: document.getElementById('username-placeholder').textContent,
+        tasks: taskArray,
+    };
+
+    const blob = new Blob([JSON.stringify(jsonData)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'to-do-list.json';
+    a.click();
+}
+
+function upload() {
+    const fileInput = document.getElementById('upload-file');
+    fileInput.click();
+}
+
+function handleFile(event) {
+    const file = event.target.files[0];
+    if (file && file.type === 'application/json') {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            try {
+                const data = JSON.parse(e.target.result);
+
+                const listing = document.querySelector('.tasks');
+                listing.innerHTML = '';
+
+                document.getElementById('username-placeholder').textContent = data.username;
+
+                data.tasks.forEach((task, index) => {
+                    if (index === 0) {
+                        const firstTaskInput = document.getElementById('task-1');
+                        const firstCheckbox = document.getElementById('check-1');
+                        if (firstTaskInput && firstCheckbox) {
+                            firstTaskInput.value = task.task;
+                            firstCheckbox.checked = task.checked;
+                        }
+                    } else {
+                        add();
+                        const taskInput = document.getElementById(`task-${index + 1}`);
+                        const checkbox = document.getElementById(`check-${index + 1}`);
+                        if (taskInput && checkbox) {
+                            taskInput.value = task.task;
+                            checkbox.checked = task.checked;
+                        } else {
+                            console.error(`Task element with id 'task-${index + 1}' or checkbox with id 'check-${index + 1}' not found.`);
+                        }
+                    }
+                });
+            } catch (err) {
+                console.error('Error parsing JSON:', err);
+            }
+        };
+
+        reader.readAsText(file);
+    } else {
+        console.error('Invalid file type. Please upload a JSON file.');
+    }
 }
 
 document.getElementById('save-btn').addEventListener('click', save);
@@ -98,6 +172,10 @@ document.getElementById('check-1').addEventListener('click', function() {
         firstTaskInput.classList.remove('strike-through');
     }
 });
+
+document.getElementById('upload-btn').addEventListener('click', upload);
+
+document.getElementById('upload-file').addEventListener('change', handleFile);
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('task-1').focus();
